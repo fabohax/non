@@ -1,6 +1,6 @@
-## BBOX - NextJS Bitcoin Lightning Store Template
+## blob - NextJS Bitcoin Lightning Store Template
 
-![BBOX](./public/bbox.png)
+![blob](./public/blob.png)
 
 This template contains a NextJS-based e-commerce application for selling digital products using Bitcoin Lightning Network. The app provides a user-friendly interface to browse and purchase various items.
 
@@ -13,8 +13,8 @@ Features:
 - Contact page: A dedicated contact page is available for users to get in touch and inquire about the app or request the full source code.
 
 To run the app locally, follow these steps:
-1. Clone the repository: `git clone https://github.com/fabohax/bitbox.git`
-2. Navigate to the project directory: `cd bitbox`
+1. Clone the repository: `git clone https://github.com/fabohax/blob.git`
+2. Navigate to the project directory: `cd blob`
 3. Install dependencies: `npm install`
 4. Start the development server: `npm run dev`
 5. Open your browser and visit `http://localhost:3000` to access the app.

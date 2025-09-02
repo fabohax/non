@@ -32,42 +32,25 @@ function Cart({product}) {
     window.location.reload();
   };
 
-  const totalPrice = cartItems.reduce((total, item) => total + item.price, 0);
-  const itemPrice = cartItems.reduce((total, item) => item.price, 0);
-  const [satoshis, setSatoshis] = useState(null);
-  
-
-  useEffect(() => {
-    // Fetch the Bitcoin price from Coingecko API
-    fetch('https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=usd')
-      .then((response) => response.json())
-      .then((data) => {
-        const bitcoinPrice = data.bitcoin.usd; // Get the Bitcoin price in USD from the API response
-        const satoshisValue = Math.floor((itemPrice / bitcoinPrice) * 100000000); // Convert price to satoshis
-        setSatoshis(satoshisValue);
-      })
-      .catch((error) => {
-        console.log('Error fetching Bitcoin price:', error);
-      });
-  }, [itemPrice, satoshis]);
-
-  const totalSatPrice = (satoshis/itemPrice) * totalPrice;
+  const totalPrice = cartItems.reduce((total, item) => total + (item.price || 0), 0);
+  const currency = cartItems[0]?.currency || 'USD';
 
   return (
     <div className="container">
       <Head>
-        <title>box</title>
+        <title>Cart | Shop</title>
       </Head>
       <Header/>
       {cartItems && cartItems.length > 0 ? (
         <div className="cartCheck">
-          {cartItems.length} item{cartItems.length === 1 ?('') : ('s')} : {totalSatPrice} SAT{' '}
+          {cartItems.length} item{cartItems.length === 1 ? '' : 's'} · {currency} {totalPrice}
+          {' '}
           <Link href="#" onClick={handleCheckoutClick}>
-            Buy now
+            Checkout
           </Link>
         </div>
       ) : (
-        <div className="noItems">No items grabbed yet</div>
+        <div className="noItems">Your cart is empty</div>
       )}
       <main className={`grid ${isGrid ? 'visible' : ''}`}>
         {/* Render cart items */}
@@ -79,13 +62,15 @@ function Cart({product}) {
               </Link>
             </div>
             <p>{item.title}</p>
-            <p>{satoshis !== null ? satoshis : '[...]' } SAT</p>
+            {item.selectedSize && <p>Size: {item.selectedSize}</p>}
+            {item.selectedColor && <p>Color: {item.selectedColor}</p>}
+            <p>{item.currency || 'USD'} {item.price}</p>
           </div>
         ))}
       </main>
       {cartItems && cartItems.length > 0 && (
         <Link href="#" onClick={handleClearCart} className="clearCart">
-          Clean
+          Clear cart
         </Link>
       )}
       {showPopup && <Checkout />}

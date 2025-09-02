@@ -1,9 +1,9 @@
 import React from 'react';
-import Footer from './footer.js';
+import StaticPage from '../../components/pages/StaticPage';
 
 const TermsOfServicePage = () => {
   return (
-    <div className='st'>
+    <StaticPage title="Terms of Service" bare>
       <h1>Terms of Service</h1>
       <p>
         Welcome to our store app! These terms of service outline the rules and regulations for the use of our app.
@@ -53,8 +53,7 @@ const TermsOfServicePage = () => {
       <p>
         If you have any questions about these terms of service, please contact us at 40230@pm.me.
       </p>
-      <Footer/>
-    </div>
+    </StaticPage>
   );
 };
 

@@ -1,33 +1,3 @@
-/*cart.js*/
-import { useEffect } from 'react';
-import { useRouter } from 'next/router';
-
-export default function Models() {
-  const router = useRouter();
-
-  useEffect(() => {
-    // Get the device language
-    const deviceLanguage = navigator.language.slice(0, 2);
-
-    // Define the supported languages and their corresponding routes
-    const supportedLanguages = ['en', 'es', 'pt', 'tr', 'ru'];
-    const languageRoutes = {
-      en: '/en/models',
-      es: '/es/models',
-      pt: '/pt/models',
-      tr: '/tr/models',
-      ru: '/ru/models',
-    };
-
-    // Redirect to the corresponding language page if the device language is supported
-    if (supportedLanguages.includes(deviceLanguage)) {
-      router.push(languageRoutes[deviceLanguage]);
-    } else {
-      // If the device language is not supported, fallback to a default language (e.g., English)
-      router.push('/en');
-    }
-  }, [router]);
-
-  return null;
-
-}
+/*models.js removed: category not supported*/
+export default function Page() { return null; }
+export async function getStaticProps(){ return { notFound: true }; }

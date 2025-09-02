@@ -1,9 +1,9 @@
 import React from 'react';
-import Footer from './footer.js';
+import StaticPage from '../../components/pages/StaticPage';
 
 const PrivacyPolicyPage = () => {
   return (
-    <div className='st'>
+    <StaticPage title="Política de Privacidad">
       <h1>Privacy Policy</h1>
       <p>
         At our store app, we respect and protect the privacy of our users. This privacy policy explains how we collect,
@@ -51,12 +51,7 @@ const PrivacyPolicyPage = () => {
         upon posting the revised policy. We encourage you to review this privacy policy periodically for any updates or
         changes.
       </p>
-      <h2>7. Contact Us</h2>
-      <p>
-        If you have any questions or concerns about this privacy policy, please contact us at 40230@pm.me
-      </p>
-      <Footer/>
-    </div>
+    </StaticPage>
   );
 };
 

@@ -33,23 +33,24 @@ function Cart() {
     window.location.reload();
   };
 
-  const totalPrice = cartItems.reduce((total, item) => total + item.price, 0);
+  const totalPrice = cartItems.reduce((total, item) => total + (item.price || 0), 0);
+  const currency = cartItems[0]?.currency || 'USD';
 
   return (
     <div className="container">
       <Head>
-        <title>SEPET | BITBIN</title>
+        <title>Sepet | Mağaza</title>
       </Head>
       <Header/>
       {cartItems && cartItems.length > 0 ? (
         <div className="cartCheck">
-          ${totalPrice} için {cartItems.length} ürün{' '}
+          {cartItems.length} ürün · {currency} {totalPrice}{' '}
           <Link href="#" onClick={handleCheckoutClick}>
-            Şimdi Öde
+            Ödeme yap
           </Link>
         </div>
       ) : (
-        <div className="noItems">Sepette ürün bulunmuyor</div>
+        <div className="noItems">Sepetiniz boş</div>
       )}
       <main className={`grid ${isGrid ? 'visible' : ''}`}>
         {/* Render cart items */}
@@ -61,13 +62,15 @@ function Cart() {
               </Link>
             </div>
             <p>{item.title}</p>
-            <p>{item.price}$</p>
+            {item.selectedSize && <p>Beden: {item.selectedSize}</p>}
+            {item.selectedColor && <p>Renk: {item.selectedColor}</p>}
+            <p>{item.currency || 'USD'} {item.price}</p>
           </div>
         ))}
       </main>
       {cartItems && cartItems.length > 0 && (
         <Link href="#" onClick={handleClearCart} className="clearCart">
-          Sepeti Temizle
+          Sepeti temizle
         </Link>
       )}
       {showPopup && <Checkout />}

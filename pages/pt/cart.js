@@ -33,23 +33,24 @@ function Cart() {
     window.location.reload();
   };
 
-  const totalPrice = cartItems.reduce((total, item) => total + item.price, 0);
+  const totalPrice = cartItems.reduce((total, item) => total + (item.price || 0), 0);
+  const currency = cartItems[0]?.currency || 'USD';
 
   return (
     <div className="container">
       <Head>
-        <title>CARRO | PUK</title>
+        <title>Carrinho | Loja</title>
       </Head>
       <Header/>
       {cartItems && cartItems.length > 0 ? (
         <div className="cartCheck">
-          {cartItems.length} productos por ${totalPrice}{' '}
+          {cartItems.length} item{cartItems.length === 1 ? '' : 's'} · {currency} {totalPrice}{' '}
           <Link href="#" onClick={handleCheckoutClick}>
-            Comprar ahora
+            Finalizar compra
           </Link>
         </div>
       ) : (
-        <div className="noItems">No hay artículos en el carrito</div>
+        <div className="noItems">Seu carrinho está vazio</div>
       )}
       <main className={`grid ${isGrid ? 'visible' : ''}`}>
         {/* Render cart items */}
@@ -61,13 +62,15 @@ function Cart() {
               </Link>
             </div>
             <p>{item.title}</p>
-            <p>{item.price}$</p>
+            {item.selectedSize && <p>Tamanho: {item.selectedSize}</p>}
+            {item.selectedColor && <p>Cor: {item.selectedColor}</p>}
+            <p>{item.currency || 'USD'} {item.price}</p>
           </div>
         ))}
       </main>
       {cartItems && cartItems.length > 0 && (
         <Link href="#" onClick={handleClearCart} className="clearCart">
-          Limpiar carrito
+          Limpar carrinho
         </Link>
       )}
       {showPopup && <Checkout />}

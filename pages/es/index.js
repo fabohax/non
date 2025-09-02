@@ -8,34 +8,8 @@ import data from '../../db/data.json';
 import styles from '../../src/app/globals.css';
 import Header from './header';
 import Footer from './footer';
+import HomePage from '../../components/HomePage';
 
 export default function Home() {
-
-  const [products, setProducts] = useState(data.data);
-
-  useEffect(() => {
-    setProducts(data.data);
-  }, []);
-
-  const [isGrid, setGrid] = useState(false);
-
-  useEffect(() => {
-    setGrid(true);
-  }, []);
-
-  return (
-    <div className="container">
-      <Header/>
-      <main className={`grid ${isGrid ? 'visible' : ''}`}>
-        {products.map((product) => (
-          <div key={product.id} className="product-item">
-            <Link href={`/${product.id}`} passHref>
-              <Image width={350} height={350} src={product.image} alt={product.title} />
-            </Link>
-          </div>
-        ))}
-      </main>
-      <Footer />
-    </div>
-  );
+  return <HomePage/>;
 }

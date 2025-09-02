@@ -66,3 +66,7 @@ export default function Home() {
     </div>
   );
 }
+
+// Removed models page for clothing store
+export function Page() { return null; }
+export async function getStaticProps(){ return { notFound: true }; }

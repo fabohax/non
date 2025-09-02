@@ -4,6 +4,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import data from '../../db/data.json';
 import Header from './header';
+import GridPage from '../../components/pages/GridPage';
 import Sections from './sections';
 import Footer from './footer';
 
@@ -27,7 +28,7 @@ export default function Home() {
         <title>COURSES | BITBIN</title>
       </Head>
       <Header/>
-      <Sections/>
+      <GridPage title="COURSES | BITBIN" top={<Sections/>}/>
       <main className={`grid ${isGrid ? 'visible' : ''}`}>
         {products.map((product) => (
           <div key={product.id} className="product-item">
@@ -40,4 +41,10 @@ export default function Home() {
       <Footer />
     </div>
   );
+}
+
+export function getStaticProps() {
+  return {
+    notFound: true,
+  };
 }

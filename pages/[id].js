@@ -11,8 +11,10 @@ import Footer from '../components/footer';
 
 function Product({ product }) {
   const products = data.data;
-  const { id, title, description, price, currency, image } = product;
+  const { id, title, description, price, currency, image, availableSizes = [], availableColors = [] } = product;
   const [cartItems, setCartItems] = useState([]);
+  const [selectedSize, setSelectedSize] = useState(availableSizes[0] || '');
+  const [selectedColor, setSelectedColor] = useState(availableColors[0] || '');
   
   useEffect(() => {
     const cartItems = getCart();
@@ -21,33 +23,19 @@ function Product({ product }) {
   
   const router = useRouter();
   const isProductInCart = cartItems.some((item) => item.id === id);
-  const GRABBER = isProductInCart ? 'REMOVE FROM CART': 'GRAB';
+  const GRABBER = isProductInCart ? 'Remove from cart': 'Add to cart';
   const handleAddToCart = () => {
+    const cartItem = { ...product, selectedSize, selectedColor };
     if(isProductInCart) {
       removeFromCart(product);
     } else {
-      addToCart(product);
+      addToCart(cartItem);
     }
     router.push('/cart'); 
   };  
   const handleRemoveFromCart = () => {
     removeFromCart(product);
   };
-  const [satoshis, setSatoshis] = useState(null);
-
-  useEffect(() => {
-    // Fetch the Bitcoin price from Coingecko API
-    fetch('https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=usd')
-      .then((response) => response.json())
-      .then((data) => {
-        const bitcoinPrice = data.bitcoin.usd; // Get the Bitcoin price in USD from the API response
-        const satoshisValue = Math.floor((price / bitcoinPrice) * 100000000); // Convert price to satoshis
-        setSatoshis(satoshisValue);
-      })
-      .catch((error) => {
-        console.log('Error fetching Bitcoin price:', error);
-      });
-  }, [price, satoshis]);
 
   return (
     <div className="container">
@@ -63,10 +51,47 @@ function Product({ product }) {
           <div className="details-container">
             <h1 className="title">{title}</h1>
             <p>{description}</p>
-            <p>{satoshis !== null ? satoshis : '[...]' } 丰 </p>
+            <p>
+              <strong>
+                {currency} {price}
+              </strong>
+            </p>
+            {availableSizes.length > 0 && (
+              <div className="option-group">
+                <label className="option-label">Size</label>
+                <div className="option-values">
+                  {availableSizes.map((sz) => (
+                    <button
+                      key={sz}
+                      className={`option-chip ${selectedSize === sz ? 'active' : ''}`}
+                      onClick={() => setSelectedSize(sz)}
+                    >
+                      {sz}
+                    </button>
+                  ))}
+                </div>
+              </div>
+            )}
+            {availableColors.length > 0 && (
+              <div className="option-group">
+                <label className="option-label">Color</label>
+                <div className="option-values">
+                  {availableColors.map((c) => (
+                    <button
+                      key={c}
+                      className={`option-chip ${selectedColor === c ? 'active' : ''}`}
+                      onClick={() => setSelectedColor(c)}
+                    >
+                      {c}
+                    </button>
+                  ))}
+                </div>
+              </div>
+            )}
             <button
               className={isProductInCart ? 'whiteButton' : 'buyButton'}
               onClick={handleAddToCart}
+              disabled={(availableSizes.length && !selectedSize) || (availableColors.length && !selectedColor)}
             >{GRABBER}
             </button>
           </div>
