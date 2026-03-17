@@ -1,4 +1,4 @@
-## blob - NextJS Bitcoin Lightning Store Template
+## bizz - NextJS Bitcoin Lightning Store Template
 
 ![blob](./public/blob.png)
 
@@ -13,8 +13,8 @@ Features:
 - Contact page: A dedicated contact page is available for users to get in touch and inquire about the app or request the full source code.
 
 To run the app locally, follow these steps:
-1. Clone the repository: `git clone https://github.com/fabohax/blob.git`
-2. Navigate to the project directory: `cd blob`
+1. Clone the repository: `git clone https://github.com/fabohax/bizz.git`
+2. Navigate to the project directory: `cd bizz`
 3. Install dependencies: `npm install`
 4. Start the development server: `npm run dev`
 5. Open your browser and visit `http://localhost:3000` to access the app.
