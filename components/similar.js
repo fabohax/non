@@ -15,7 +15,7 @@ const SimilarProducts = ({ currentProduct }) => {
   return (
     <div>
       <br></br>
-      <p className="title">You may also like</p>
+      <p className="title">También te puede interesar</p>
       <div className={`grid ${isGrid ? 'visible' : ''}`}>
         {similarProducts.slice(0, 3).map((product) => (
           <div key={product.id}>

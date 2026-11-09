@@ -1,3 +1,5 @@
-// Removed models page for clothing store
-export default function Page() { return null; }
-export async function getStaticProps(){ return { notFound: true }; }
+import GridPage from '../../components/pages/GridPage';
+
+export default function PrendasPage() {
+  return <GridPage title="Archivo de prendas | NON20" />;
+}

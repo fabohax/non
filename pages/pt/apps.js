@@ -1,14 +1,6 @@
 import React from 'react';
 import Head from 'next/head';
 import Sections from './sections';
-import AppsPage from '../../components/pages/AppsPage';
-
-export default function Home() {
-  return <AppsPage beforeGrid={<Sections/>} title="APPS | BITBIN"/>;
-}
-
-export function getStaticProps() {
-  return {
-    notFound: true,
-  };
-}
+// Removed apps page for clothing store
+export default function Page() { return null; }
+export async function getStaticProps(){ return { notFound: true }; }

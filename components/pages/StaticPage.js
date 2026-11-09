@@ -8,7 +8,7 @@ export default function StaticPage({ title, children, bare = false }) {
     return (
       <div className="st">
         <Head>
-          <title>{title} | BITBOX</title>
+          <title>{title} | NON20</title>
         </Head>
         {children}
       </div>
@@ -17,7 +17,7 @@ export default function StaticPage({ title, children, bare = false }) {
   return (
     <div className="container">
       <Head>
-        <title>{title} | BITBOX</title>
+        <title>{title} | NON20</title>
       </Head>
       <Header />
       <main className="st">

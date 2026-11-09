@@ -23,7 +23,7 @@ function Product({ product }) {
   
   const router = useRouter();
   const isProductInCart = cartItems.some((item) => item.id === id);
-  const GRABBER = isProductInCart ? 'Remove from cart': 'Add to cart';
+  const GRABBER = isProductInCart ? 'Quitar del carrito' : 'Añadir al carrito';
   const handleAddToCart = () => {
     const cartItem = { ...product, selectedSize, selectedColor };
     if(isProductInCart) {
@@ -40,7 +40,7 @@ function Product({ product }) {
   return (
     <div className="container">
       <Head>
-        <title>{title}</title>
+        <title>{title} | NON20</title>
       </Head>
       <Header/>
       <main className="productPage">
@@ -58,7 +58,7 @@ function Product({ product }) {
             </p>
             {availableSizes.length > 0 && (
               <div className="option-group">
-                <label className="option-label">Size</label>
+                <label className="option-label">Talla</label>
                 <div className="option-values">
                   {availableSizes.map((sz) => (
                     <button

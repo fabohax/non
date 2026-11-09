@@ -9,7 +9,8 @@ import Checkout from '../../components/Checkout';
 import Header from './header';
 import Footer from './footer';
 
-function Cart({product}) {
+function Cart() {
+  const router = useRouter();
   const [showPopup, setShowPopup] = useState(false);
   const [cartItems, setCartItems] = useState([]);
   const [isGrid, setGrid] = useState(false);
@@ -33,24 +34,23 @@ function Cart({product}) {
   };
 
   const totalPrice = cartItems.reduce((total, item) => total + (item.price || 0), 0);
-  const currency = cartItems[0]?.currency || 'USD';
+  const currency = cartItems[0]?.currency || 'PEN';
 
   return (
     <div className="container">
       <Head>
-        <title>Cart | Shop</title>
+        <title>Carrito | NON20</title>
       </Head>
       <Header/>
       {cartItems && cartItems.length > 0 ? (
         <div className="cartCheck">
-          {cartItems.length} item{cartItems.length === 1 ? '' : 's'} · {currency} {totalPrice}
-          {' '}
+          {cartItems.length} artículo{cartItems.length === 1 ? '' : 's'} · {currency} {totalPrice}{' '}
           <Link href="#" onClick={handleCheckoutClick}>
-            Checkout
+            Pagar
           </Link>
         </div>
       ) : (
-        <div className="noItems">Your cart is empty</div>
+        <div className="noItems">Tu carrito está vacío</div>
       )}
       <main className={`grid ${isGrid ? 'visible' : ''}`}>
         {/* Render cart items */}
@@ -62,15 +62,15 @@ function Cart({product}) {
               </Link>
             </div>
             <p>{item.title}</p>
-            {item.selectedSize && <p>Size: {item.selectedSize}</p>}
+            {item.selectedSize && <p>Talla: {item.selectedSize}</p>}
             {item.selectedColor && <p>Color: {item.selectedColor}</p>}
-            <p>{item.currency || 'USD'} {item.price}</p>
+            <p>{item.currency || 'PEN'} {item.price}</p>
           </div>
         ))}
       </main>
       {cartItems && cartItems.length > 0 && (
         <Link href="#" onClick={handleClearCart} className="clearCart">
-          Clear cart
+          Vaciar carrito
         </Link>
       )}
       {showPopup && <Checkout />}

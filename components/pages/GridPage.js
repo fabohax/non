@@ -6,7 +6,7 @@ import data from '../../db/data.json';
 import Header from '../header';
 import Footer from '../footer';
 
-export default function GridPage({ title = 'Catalog', top = null }) {
+export default function GridPage({ title = 'Catálogo | NON20', top = null }) {
   const [products, setProducts] = useState(data.data);
 
   useEffect(() => {
