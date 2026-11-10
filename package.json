@@ -28,6 +28,9 @@
     },
     "description": "Bitcoin-Lightning-Based Digital Store",
     "main": "next.config.js",
+    "engines": {
+        "node": "26.x"
+    },
     "author": "40230",
     "license": "ISC",
     "proxy": "http://localhost:3000",

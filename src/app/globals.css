@@ -914,8 +914,9 @@ h1.head{
   .header-actions { gap:14px; font-size:9px; }
   .non20-hero { min-height:520px; padding:56px 7% 76px; align-items:flex-end; background:#000; }
   .hero-video { opacity:.32; }
-  .hero-copy { max-width:100%; }
+  .hero-copy { position:relative; inset:auto; width:100%; max-width:100%; }
   .non20-hero h1 { margin:24px 0 18px; font-size:clamp(3.7rem, 15vw, 6rem); }
+  .hero-copy h2 { max-width:100%; font-size:clamp(19px, 5.2vw, 24px); letter-spacing:.12em; line-height:1.2; overflow-wrap:anywhere; }
   .hero-stamp { width:44%; right:2%; top:24%; opacity:.32; }
   .hero-manifest { max-width:290px; font-size:14px; }
   .hero-cta { margin-top:24px; }
